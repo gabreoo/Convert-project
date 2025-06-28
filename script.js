@@ -34,11 +34,23 @@ form.onsubmit = (event) => {
 
 function convertCurrency(amount, price, symbol) {
   try {
+    // Exibindo o conteúdo
     footer.classList.add("show-result");
-    description.textContent = `${symbol} 1 = ${price}`
+    // Exibe a cotação da moeda selecionada.
+    description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`
+
   } catch (error) {
+    // remove o conteúdo exibido pois houve algum erro
     footer.classList.remove("show-result");
     alert("Algo saiu errado, por favor tente novamente em alguns instantes");
     console.log(error);
   }
+}
+
+// converte o valor em formato americano com "." no fomato brasileiro de valor com ","
+function formatCurrencyBRL (value) {
+  return Number(value).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  })
 }
