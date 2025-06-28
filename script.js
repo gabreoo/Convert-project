@@ -40,6 +40,11 @@ function convertCurrency(amount, price, symbol) {
 
     // Exibe a cotação da moeda selecionada.
     description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`;
+    
+  // verifica se o número é de fato um número, senão ele irá retornar um alert
+    if (isNaN(total)){
+      return alert('Digite um valor válido')
+    }
 
     // calcula o valor convertido da moeda
     let total = (amount * price).toFixed(2)
