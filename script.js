@@ -8,7 +8,7 @@ const currency = document.getElementById("currency");
 const form = document.querySelector("form");
 const footer = document.querySelector("main footer");
 const description = document.getElementById("description");
-const result = document.getElementById("result")
+const result = document.getElementById("result");
 
 // Manipula o input amount para receber somente números.
 amount.addEventListener("input", () => {
@@ -40,24 +40,24 @@ function convertCurrency(amount, price, symbol) {
 
     // Exibe a cotação da moeda selecionada.
     description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`;
-    
-  // verifica se o número é de fato um número, senão ele irá retornar um alert
-    if (isNaN(total)){
-      return alert('Digite um valor válido')
-    }
 
     // calcula o valor convertido da moeda
-    let total = (amount * price).toFixed(2)
-    total = formatCurrencyBRL(total).replace("R$", "")
-    // altera o resultado do footer 
-    result.textContent = total 
+    let total = (amount * price).toFixed(2);
+    total = formatCurrencyBRL(total).replace("R$", "");
+
+    // verifica se o número é de fato um número, senão ele irá retornar um alert
+    if (isNaN(total)) {
+      return alert("Digite um valor válido");
+    }
+
+    // altera o resultado do footer
+    result.textContent = total;
   } catch (error) {
     // remove o conteúdo exibido pois houve algum erro
     footer.classList.remove("show-result");
     alert("Algo saiu errado, por favor tente novamente em alguns instantes");
     console.log(error);
   }
-  
 }
 
 // converte o valor em formato americano com "." no fomato brasileiro de valor com ","
