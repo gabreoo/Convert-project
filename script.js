@@ -35,6 +35,12 @@ form.onsubmit = (event) => {
 
 function convertCurrency(amount, price, symbol) {
   try {
+    // verifica se o número é de fato um número, senão ele irá retornar um alert
+    const numAmount = Number(amount);
+    if (!amount || isNaN(numAmount) || numAmount <= 0) {
+      return alert("Digite um valor válido");
+    }
+
     // Exibindo o conteúdo
     footer.classList.add("show-result");
 
@@ -42,13 +48,8 @@ function convertCurrency(amount, price, symbol) {
     description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`;
 
     // calcula o valor convertido da moeda
-    let total = (amount * price).toFixed(2);
+    let total = (numAmount * price).toFixed(2);
     total = formatCurrencyBRL(total).replace("R$", "");
-
-    // verifica se o número é de fato um número, senão ele irá retornar um alert
-    if (isNaN(total)) {
-      return alert("Digite um valor válido");
-    }
 
     // altera o resultado do footer
     result.textContent = total;
